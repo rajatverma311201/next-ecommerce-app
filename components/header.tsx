@@ -1,13 +1,12 @@
 import Link from "next/link";
 
-// import MainNav from "@/components/main-nav";
 import { Container } from "@/components/container";
 import { MainNav } from "./main-nav";
-// import NavbarActions from "@/components/navbar-actions";
-// import getCategories from "@/actions/get-categories";
+import { getCategories } from "@/utils/api";
+import NavbarActions from "@/components/navbar-actions";
 
 export const Header = async () => {
-    //   const categories = await getCategories();
+    const categories = await getCategories();
 
     return (
         <div className="border-b">
@@ -17,10 +16,10 @@ export const Header = async () => {
                         <p className="text-xl font-bold">STORE</p>
                     </Link>
                     <MainNav
-                        data={[]}
-                        // data={categories}
+                        // data={[]}
+                        data={categories}
                     />
-                    {/* <NavbarActions /> */}
+                    <NavbarActions />
                 </div>
             </Container>
         </div>

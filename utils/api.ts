@@ -1,5 +1,6 @@
 import { Billboard, Category, Color, Product, Size } from "types";
 import Fetch from "@/utils/Fetch";
+import qs from "query-string";
 
 export const getCategories = async (): Promise<Category[]> => {
     return Fetch.GET("categories");
@@ -33,8 +34,25 @@ export const getBillboard = async (id: string): Promise<Billboard> => {
     return Fetch.GET(`billboards/${id}`);
 };
 
-export const getProducts = async (): Promise<Product[]> => {
-    return Fetch.GET("products");
+interface Query {
+    categoryId?: string;
+    colorId?: string;
+    sizeId?: string;
+    isFeatured?: boolean;
+}
+
+export const getProducts = async (query: Query): Promise<Product[]> => {
+    const queryUrl = qs.stringifyUrl({
+        url: "products",
+        query: {
+            colorId: query.colorId,
+            sizeId: query.sizeId,
+            categoryId: query.categoryId,
+            isFeatured: query.isFeatured,
+        },
+    });
+    console.log(queryUrl);
+    return Fetch.GET(queryUrl);
 };
 
 export const getProduct = async (id: string): Promise<Product> => {

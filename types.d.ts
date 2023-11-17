@@ -7,6 +7,7 @@ declare module "types" {
         method: RequestMethod;
         headers: { [key: string]: string };
         body?: string;
+        cache?: "no-store";
     }
 
     export type RequestMethod = "GET" | "POST" | "PATCH" | "PUT" | "DELETE";

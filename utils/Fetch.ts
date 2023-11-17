@@ -34,8 +34,8 @@ export default class Fetch {
             headers: {
                 "Content-Type": "application/json",
             },
+            cache: "no-store",
         };
-        console.log(reqContent);
         if (reqBody) {
             reqContent.body = JSON.stringify(reqBody);
         }
