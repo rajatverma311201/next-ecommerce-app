@@ -1,5 +1,5 @@
 import { Billboard, Category, Color, Product, Size } from "types";
-import Fetch from "@/utils/Fetch";
+import Fetch from "@/lib/Fetch";
 import qs from "query-string";
 
 export const getCategories = async (): Promise<Category[]> => {

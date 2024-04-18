@@ -10,6 +10,7 @@ import Currency from "@/components/currency";
 // import usePreviewModal from "@/hooks/use-preview-modal";
 // import useCart from "@/hooks/use-cart";
 import { Product } from "types";
+import Link from "next/link";
 
 interface ProductCard {
     data: Product;
@@ -37,8 +38,9 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
     };
 
     return (
-        <div
-            onClick={handleClick}
+        <Link
+            href={`/product/${data?.id}`}
+            // onClick={handleClick}
             className="group cursor-pointer space-y-4 rounded-xl border bg-white p-3"
         >
             {/* Image & actions */}
@@ -71,7 +73,7 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
             <div className="flex items-center justify-between">
                 <Currency value={data?.price} />
             </div>
-        </div>
+        </Link>
     );
 };
 

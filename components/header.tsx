@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { Container } from "@/components/container";
 import { MainNav } from "./main-nav";
-import { getCategories } from "@/utils/api";
+import { getCategories } from "@/lib/api";
 import NavbarActions from "@/components/navbar-actions";
 
 export const Header = async () => {

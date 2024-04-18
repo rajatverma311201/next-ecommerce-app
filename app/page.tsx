@@ -1,7 +1,7 @@
 import { Billboard } from "@/components/billboard";
 import { Container } from "@/components/container";
 import { ProductsList } from "@/components/products/products-list";
-import { getBillboard, getProducts } from "@/utils/api";
+import { getBillboard, getProducts } from "@/lib/api";
 
 const HomePage = async () => {
     const billboard = await getBillboard("6554aaa1fedccd842679bb8c");

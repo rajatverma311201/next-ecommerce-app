@@ -1,27 +1,40 @@
-import { REQUEST } from "@/utils/constants";
-import { RequestBody, RequestContent, RequestMethod } from "types";
-
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+enum Request {
+    GET = "GET",
+    POST = "POST",
+    PATCH = "PATCH",
+    PUT = "PUT",
+    DELETE = "DELETE",
+}
+
+type RequestMethod = `${Request}`;
+
+type RequestBody = {
+    [key: string]: unknown;
+};
+
+interface RequestContent extends RequestInit {}
 
 export default class Fetch {
     static async GET(url: string) {
-        return this.requestFn(url, REQUEST.GET);
+        return this.requestFn(url, Request.GET);
     }
 
     static async POST(url: string, reqBody: RequestBody) {
-        return this.requestFn(url, REQUEST.POST, reqBody);
+        return this.requestFn(url, Request.POST, reqBody);
     }
 
     static async PATCH(url: string, reqBody: RequestBody) {
-        return this.requestFn(url, REQUEST.PATCH, reqBody);
+        return this.requestFn(url, Request.PATCH, reqBody);
     }
 
     static async PUT(url: string, reqBody: RequestBody) {
-        return this.requestFn(url, REQUEST.PUT, reqBody);
+        return this.requestFn(url, Request.PUT, reqBody);
     }
 
     static async DELETE(url: string) {
-        return this.requestFn(url, REQUEST.DELETE);
+        return this.requestFn(url, Request.DELETE);
     }
 
     private static async requestFn(
