@@ -43,7 +43,7 @@ interface GalleryTabProps {
     image: ImageType;
 }
 
-const GalleryTab: React.FC<GalleryTabProps> = ({ image }) => {
+export const GalleryTab: React.FC<GalleryTabProps> = ({ image }) => {
     return (
         <>
             <Tab className="relative flex aspect-square cursor-pointer items-center justify-center rounded-md bg-white">
