@@ -5,14 +5,12 @@ import { MouseEventHandler } from "react";
 import { Expand, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-import Currency from "@/components/currency";
-// import IconButton  from "@/components/ui/icon-button";
-// import usePreviewModal from "@/hooks/use-preview-modal";
-// import useCart from "@/hooks/use-cart";
+import { Currency } from "@/components/currency";
+
 import { Product } from "types";
-import Link from "next/link";
 import { usePreviewModal } from "@/hooks/use-preview-modal";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
+import { useCart } from "@/hooks/use-cart";
 
 interface ProductCard {
     data: Product;
@@ -20,7 +18,7 @@ interface ProductCard {
 
 const ProductCard: React.FC<ProductCard> = ({ data }) => {
     const previewModal = usePreviewModal();
-    //   const cart = useCart();
+    const cart = useCart();
     const router = useRouter();
 
     const handleClick = () => {
@@ -29,18 +27,18 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
 
     const onPreview: MouseEventHandler<HTMLButtonElement> = (event) => {
         event.stopPropagation();
+
         previewModal.onOpen(data);
     };
 
     const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
         event.stopPropagation();
 
-        // cart.addItem(data);
+        cart.addItem(data);
     };
 
     return (
         <div
-            // href={`/product/${data?.id}`}
             className="group cursor-pointer space-y-4 rounded-xl border bg-white p-3"
             onClick={handleClick}
         >

@@ -5,6 +5,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { cn } from "@/lib/utils";
 import ModalProvider from "@/components/providers/modal-provider";
+import { Toaster } from "@/components/ui/sonner";
 
 const font = Urbanist({
     weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
@@ -25,6 +26,7 @@ export default function RootLayout({
         <html lang="en">
             <body className={cn(font.className)}>
                 <ModalProvider />
+                <Toaster position="top-center" richColors={true} theme="dark" />
                 <Header />
                 {children}
                 <Footer />

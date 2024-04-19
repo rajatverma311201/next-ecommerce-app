@@ -11,7 +11,7 @@ interface CurrencyProps {
     value?: string | number;
 }
 
-const Currency: React.FC<CurrencyProps> = ({ value = 0 }) => {
+export const Currency: React.FC<CurrencyProps> = ({ value = 0 }) => {
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
@@ -26,5 +26,3 @@ const Currency: React.FC<CurrencyProps> = ({ value = 0 }) => {
         <div className="font-semibold">{formatter.format(Number(value))}</div>
     );
 };
-
-export default Currency;

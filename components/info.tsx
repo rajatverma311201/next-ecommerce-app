@@ -4,19 +4,20 @@ import { MouseEventHandler } from "react";
 import { ShoppingCart } from "lucide-react";
 import { Product } from "types";
 import { Button } from "@/components/ui/button";
-import Currency from "./currency";
+import { Currency } from "@/components/currency";
+import { useCart } from "@/hooks/use-cart";
 
 interface InfoProps {
     data: Product;
 }
 
 export const Info: React.FC<InfoProps> = ({ data }) => {
-    //   const cart = useCart()
+    const cart = useCart();
 
     const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
         event.stopPropagation();
 
-        // cart.addItem(data)
+        cart.addItem(data);
     };
 
     return (
