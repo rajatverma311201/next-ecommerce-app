@@ -20,8 +20,8 @@ export const CartSummary = () => {
             removeAll();
         }
 
-        if (searchParams.get("canceled")) {
-            toast.error("Something went wrong.");
+        if (searchParams.get("cancelled")) {
+            toast.error("Order payment cancelled");
         }
     }, [searchParams, removeAll]);
 
@@ -35,8 +35,9 @@ export const CartSummary = () => {
                 productIds: items.map((item) => item.id),
             });
 
-            window.location = response.data.url;
+            window.location = response.url;
         } catch (error) {
+            console.error(error);
             toast.error("Something went wrong.");
         }
     };
