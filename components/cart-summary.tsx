@@ -1,18 +1,21 @@
 "use client";
 
-import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
-import { Button } from "@/components/ui/button";
 import { Currency } from "@/components/currency";
+import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/use-cart";
-import { toast } from "sonner";
 import Fetch from "@/lib/Fetch";
+import { Loader2Icon } from "lucide-react";
+import { toast } from "sonner";
 
 export const CartSummary = () => {
     const searchParams = useSearchParams();
     const items = useCart((state) => state.items);
     const removeAll = useCart((state) => state.removeAll);
+
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (searchParams.get("success")) {
@@ -30,6 +33,12 @@ export const CartSummary = () => {
     }, 0);
 
     const onCheckout = async () => {
+        if (items.length === 0) {
+            return;
+        }
+
+        setLoading(true);
+
         try {
             const response = await Fetch.POST(`checkout`, {
                 productIds: items.map((item) => item.id),
@@ -65,10 +74,13 @@ export const CartSummary = () => {
                     <Currency value={totalPrice} />
                 </div>
                 <Button
-                    disabled={items.length === 0}
+                    disabled={items.length === 0 || loading}
                     onClick={onCheckout}
-                    className="mt-6 w-full"
+                    className="mt-6 w-full disabled:cursor-not-allowed"
                 >
+                    {loading && (
+                        <Loader2Icon className="mr-1 h-4 w-4 animate-spin" />
+                    )}
                     Checkout
                 </Button>
             </div>
