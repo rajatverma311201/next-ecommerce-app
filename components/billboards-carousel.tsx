@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import Autoplay from "embla-carousel-autoplay";
+import Fade from "embla-carousel-fade";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Billboard } from "types";
@@ -46,6 +47,7 @@ export const BillboardsCarousel: React.FC<BillboardsCarouselProps> = ({
                     Autoplay({
                         delay: 1500,
                     }),
+                    Fade(),
                 ]}
                 setApi={setApi}
                 opts={{ loop: true }}
