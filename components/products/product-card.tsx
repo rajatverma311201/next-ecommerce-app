@@ -1,16 +1,16 @@
 "use client";
 
+import { Expand, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { MouseEventHandler } from "react";
-import { Expand, ShoppingCart } from "lucide-react";
-import { useRouter } from "next/navigation";
 
 import { Currency } from "@/components/currency";
 
-import { Product } from "types";
-import { usePreviewModal } from "@/hooks/use-preview-modal";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/use-cart";
+import { usePreviewModal } from "@/hooks/use-preview-modal";
+import Link from "next/link";
+import { Product } from "types";
 
 interface ProductCard {
     data: Product;
@@ -19,11 +19,6 @@ interface ProductCard {
 const ProductCard: React.FC<ProductCard> = ({ data }) => {
     const previewModal = usePreviewModal();
     const cart = useCart();
-    const router = useRouter();
-
-    const handleClick = () => {
-        router.push(`/product/${data?.id}`);
-    };
 
     const onPreview: MouseEventHandler<HTMLButtonElement> = (event) => {
         event.stopPropagation();
@@ -38,9 +33,10 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
     };
 
     return (
-        <div
+        <Link
             className="group cursor-pointer space-y-4 rounded-xl border bg-white p-3"
-            onClick={handleClick}
+            // onClick={handleClick}
+            href={`/product/${data?.id}`}
         >
             {/* Image & actions */}
             <div className="relative aspect-square rounded-xl bg-gray-100">
@@ -71,7 +67,7 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
             <div className="flex items-center justify-between">
                 <Currency value={data?.price} />
             </div>
-        </div>
+        </Link>
     );
 };
 

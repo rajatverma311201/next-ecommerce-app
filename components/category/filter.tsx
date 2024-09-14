@@ -1,11 +1,10 @@
 "use client";
 
-import qs from "query-string";
 import { useRouter, useSearchParams } from "next/navigation";
+import qs from "query-string";
 
-import { Color, Size } from "types";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { Color, Size } from "types";
 
 interface FilterProps {
     data: (Size | Color)[];
@@ -39,7 +38,7 @@ export const Filter: React.FC<FilterProps> = ({ data, name, valueKey }) => {
             { skipNull: true },
         );
 
-        router.push(url);
+        router.replace(url);
     };
 
     return (
