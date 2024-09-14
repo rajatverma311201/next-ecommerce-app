@@ -1,6 +1,6 @@
-import { Billboard, Category, Color, Product, Size } from "types";
 import Fetch from "@/lib/Fetch";
 import qs from "query-string";
+import { Billboard, Category, Color, Product, Size } from "types";
 
 export const getCategories = async (): Promise<Category[]> => {
     return Fetch.GET("categories");
@@ -51,7 +51,6 @@ export const getProducts = async (query: Query): Promise<Product[]> => {
             isFeatured: query.isFeatured,
         },
     });
-    console.log(queryUrl);
     return Fetch.GET(queryUrl);
 };
 

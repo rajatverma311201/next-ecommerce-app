@@ -25,14 +25,14 @@ export const BillboardsCarousel: React.FC<BillboardsCarouselProps> = ({
 }) => {
     const [api, setApi] = useState<CarouselApi>();
     const [current, setCurrent] = useState(0);
-    const [count, setCount] = useState(0);
+    // const [count, setCount] = useState(0);
 
     useEffect(() => {
         if (!api) {
             return;
         }
 
-        setCount(api.scrollSnapList().length);
+        // setCount(api.scrollSnapList().length);
         setCurrent(api.selectedScrollSnap() + 1);
 
         api.on("select", () => {
@@ -66,21 +66,19 @@ export const BillboardsCarousel: React.FC<BillboardsCarouselProps> = ({
             <div className="flex items-center justify-center gap-5 transition-all duration-200">
                 {billboards.map((item, idx) => {
                     return (
-                        <>
-                            <Image
-                                key={item.id}
-                                src={item.imageUrl}
-                                height={200}
-                                width={200}
-                                className={cn(
-                                    "h-20 w-32 cursor-pointer rounded-lg border-2 border-transparent object-cover opacity-75 duration-200",
-                                    current === idx + 1 &&
-                                        "scale-110 border-primary/50 opacity-100",
-                                )}
-                                alt="label"
-                                onClick={() => api?.scrollTo(idx)}
-                            />
-                        </>
+                        <Image
+                            key={item.id}
+                            src={item.imageUrl}
+                            height={200}
+                            width={200}
+                            className={cn(
+                                "h-20 w-32 cursor-pointer rounded-lg border-2 border-transparent object-cover opacity-75 duration-200",
+                                current === idx + 1 &&
+                                    "scale-110 border-primary/50 opacity-100",
+                            )}
+                            alt="label"
+                            onClick={() => api?.scrollTo(idx)}
+                        />
                     );
                 })}
             </div>

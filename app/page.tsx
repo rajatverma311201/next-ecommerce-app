@@ -7,9 +7,7 @@ import { getBillboard, getBillboards, getProducts } from "@/lib/api";
 const HomePage = async () => {
     const billboard = await getBillboard("6554aaa1fedccd842679bb8c");
     const billboards = await getBillboards();
-    console.log(billboards);
     const products = await getProducts({ isFeatured: true });
-    // console.log(products);
     return (
         <Container>
             <div className="space-y-10 pb-10">
